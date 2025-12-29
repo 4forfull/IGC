@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import joblib
 from datetime import datetime
-from catboost import CatBoostClassifier
 
 # 设置页面配置，启用宽屏模式
 st.set_page_config(layout="wide")
@@ -12,10 +12,7 @@ st.title("Correa Cascade Prediction")
 
 # 加载 LightGBM 模型
 try:
-    model = CatBoostClassifier()
-    model.load_model(
-        './model.cbm'
-    )
+    model = joblib.load('./model.m')
 except Exception as e:
     st.error(f"Unable to load model, error message：{e}")
     st.stop()
